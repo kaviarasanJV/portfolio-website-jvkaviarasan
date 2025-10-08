@@ -1,15 +1,13 @@
-import React from 'react'
+import PropTypes from 'prop-types';
 import './MyWork.css'
 import theme_pattern from '../../assets/theme_pattern.svg'
-
-
 const Table = ({ data }) => {
   return (
     <table border="1" cellPadding="10" cellSpacing="0">
       <thead>
         <tr>
           <th>ID</th>
-          <th>Name</th>
+          <th>Organization</th>
           <th>TechStack</th>
           <th>Project</th>
         </tr>
@@ -67,12 +65,21 @@ Documaker, RP Documaker Studio, .Net Technology (Windows Forms Application, Web 
   return (
     <div id='work' className='mywork'>
       <div className="title-box">
-        <h1>Work Experience</h1>
+        <h1>{`Work Experience`}</h1>
         <img src={theme_pattern} alt="" />
       </div>
       <Table data={data} />
     </div>
   )
 }
-
-export default MyWork
+Table.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      Organisation: PropTypes.string.isRequired,
+      TechStack: PropTypes.string.isRequired,
+      Project: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+export default MyWork;
